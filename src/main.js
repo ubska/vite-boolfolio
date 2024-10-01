@@ -6,7 +6,7 @@ import router from './router'
 
 const app = createApp(App)
 
-const apiUrl = 'http://localhost:8000/api/posts';
+app.config.globalProperties.$apiUrl = 'http://localhost:8000/api/posts';
 
 app.use(router)
 

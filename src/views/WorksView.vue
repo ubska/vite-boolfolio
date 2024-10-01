@@ -1,25 +1,30 @@
 <script>
 import axios from 'axios';
-// export default {
-//   name: works,
-//   data() {
-//     return {
-//       works: [],
-//     };
-//   },
-//   mounted() {
-    
-//   }
-// }
+export default {
+  name: 'WorksView',
+  data() {
+    return {
+      posts: [],
+    };
+  },
+  mounted() {
+    axios.get(`${this.$apiUrl}`)
+      .then(response => {
+        console.log(response.data);
+        
+        this.posts = response.data;
+    })
+  }
+}
 </script>
 
 <template>
   <div class="about">
     <h1>Progetti</h1>
     <ul>
-      <li>Progetti...</li>
-      <li>Progetti...</li>
-      <li>Progetti...</li>
+      <li v-for="post in posts" :key="post.id">
+        {{ post.title }}
+      </li>
     </ul>
   </div>
 </template>
